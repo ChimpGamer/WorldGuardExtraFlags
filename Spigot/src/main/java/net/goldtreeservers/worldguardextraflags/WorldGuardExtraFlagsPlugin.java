@@ -203,9 +203,7 @@ public class WorldGuardExtraFlagsPlugin extends JavaPlugin
 			Map<Flag<?>, Boolean> valueMap = WorldGuardExtraFlagsPlugin.FLAGS.stream().collect(Collectors.toMap(v -> v, v -> false));
 
 			WorldGuard.getInstance().getPlatform().getRegionContainer().getLoaded().forEach(m ->
-			{
-				m.getRegions().values().forEach(r -> r.getFlags().keySet().forEach(f -> valueMap.computeIfPresent(f, (k, v) -> true)));
-			});
+                    m.getRegions().values().forEach(r -> r.getFlags().keySet().forEach(f -> valueMap.computeIfPresent(f, (k, v) -> true))));
 
 			return valueMap.entrySet().stream().collect(Collectors.toMap(v -> v.getKey().getName(), v -> v.getValue() ? 1 : 0));
 		}));
