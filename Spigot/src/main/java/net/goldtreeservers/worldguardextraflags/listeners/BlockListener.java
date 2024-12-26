@@ -12,12 +12,15 @@ import org.bukkit.block.BlockState;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.BlockDropItemEvent;
 import org.bukkit.event.block.EntityBlockFormEvent;
 
 import com.sk89q.worldguard.protection.flags.StateFlag.State;
 
 import lombok.RequiredArgsConstructor;
 import net.goldtreeservers.worldguardextraflags.flags.Flags;
+
+import java.util.Set;
 
 @RequiredArgsConstructor
 public class BlockListener implements Listener
@@ -52,6 +55,21 @@ public class BlockListener implements Listener
 			{
 				event.setCancelled(true);
 			}
+		}
+	}
+
+	@EventHandler(ignoreCancelled = true)
+	public void onBlockDropItem(BlockDropItemEvent event) {
+		LocalPlayer localPlayer = worldGuardPlugin.wrapPlayer(event.getPlayer());
+		Location location = BukkitAdapter.adapt(event.getBlock().getLocation());
+		if (this.sessionManager.hasBypass(localPlayer, (World) location.getExtent())) {
+			return;
+		}
+
+		Set<Material> allowedDrops = regionContainer.createQuery().queryValue(location, localPlayer, Flags.ALLOWED_BLOCK_DROPS);
+		if (!event.getItems().removeIf(item -> allowedDrops != null && !allowedDrops.contains(item.getItemStack().getType()))) {
+			Set<Material> blockedDrops = regionContainer.createQuery().queryValue(location, localPlayer, Flags.BLOCKED_BLOCK_DROPS);
+			event.getItems().removeIf(item -> blockedDrops != null && blockedDrops.contains(item.getItemStack().getType()));
 		}
 	}
 }

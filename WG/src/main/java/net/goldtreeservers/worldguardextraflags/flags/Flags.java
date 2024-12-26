@@ -61,4 +61,7 @@ public final class Flags
 	public final static StateFlag ITEM_DURABILITY = new StateFlag("item-durability", true);
 	
 	public final static LocationFlag JOIN_LOCATION = new LocationFlag("join-location");
+
+	public final static SetFlag<Material> ALLOWED_BLOCK_DROPS = new SetFlag<>("allowed-block-drops", new MaterialFlag(null));
+	public final static SetFlag<Material> BLOCKED_BLOCK_DROPS = new SetFlag<>("blocked-block-drops", new MaterialFlag(null));
 }
