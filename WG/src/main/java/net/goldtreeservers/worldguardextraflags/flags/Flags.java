@@ -6,7 +6,6 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
 import com.sk89q.worldguard.protection.flags.BooleanFlag;
-import com.sk89q.worldguard.protection.flags.CommandStringFlag;
 import com.sk89q.worldguard.protection.flags.DoubleFlag;
 import com.sk89q.worldguard.protection.flags.LocationFlag;
 import com.sk89q.worldguard.protection.flags.SetFlag;
@@ -14,7 +13,6 @@ import com.sk89q.worldguard.protection.flags.StateFlag;
 import com.sk89q.worldguard.protection.flags.StringFlag;
 
 import net.goldtreeservers.worldguardextraflags.flags.data.SoundData;
-import net.goldtreeservers.worldguardextraflags.wg.WorldGuardUtils;
 
 public final class Flags
 {
