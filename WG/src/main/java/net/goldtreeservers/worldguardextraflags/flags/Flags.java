@@ -62,4 +62,9 @@ public final class Flags
 
 	public final static SetFlag<Material> ALLOWED_BLOCK_DROPS = new SetFlag<>("allowed-block-drops", new MaterialFlag(null));
 	public final static SetFlag<Material> BLOCKED_BLOCK_DROPS = new SetFlag<>("blocked-block-drops", new MaterialFlag(null));
+
+	public final static SetFlag<Material> ALLOW_BLOCK_PLACE = new SetFlag<Material>("allow-block-place", new BlockMaterialFlag(null));
+	public final static SetFlag<Material> DENY_BLOCK_PLACE = new SetFlag<Material>("deny-block-place", new BlockMaterialFlag(null));
+	public final static SetFlag<Material> ALLOW_BLOCK_BREAK = new SetFlag<Material>("allow-block-break", new BlockMaterialFlag(null));
+	public final static SetFlag<Material> DENY_BLOCK_BREAK = new SetFlag<Material>("deny-block-break", new BlockMaterialFlag(null));
 }
