@@ -83,13 +83,13 @@ public class BlockListener implements Listener
 		Event.Result originalResult = event.getResult();
 		Object cause = event.getCause().getRootCause();
 		if (cause instanceof Player player) {
+			LocalPlayer localPlayer = worldGuardPlugin.wrapPlayer(player);
 			for (Block block : event.getBlocks()) {
 				Material type = block.getType();
 				if (type.isAir()) {
 					type = event.getEffectiveMaterial();
 				}
 
-				LocalPlayer localPlayer = worldGuardPlugin.wrapPlayer(player);
 				Location location = BukkitAdapter.adapt(block.getLocation());
 
 				Set<Material> state = regionContainer.createQuery().queryValue(location, localPlayer, Flags.ALLOW_BLOCK_PLACE);
